@@ -1,0 +1,17 @@
+1. Is it possible to find an analytical, similar solution of the strong blast wave problem in the
+Newtonian approximation .
+2. How can the aerodynamic performance of channel flow ground effect machines be
+calculated.
+3. What is the basic mechanism of the transonic aileron buzz .
+4. Papers on shock-sound wave interaction .
+5. Material properties of photoelastic materials .
+6. Can the transverse potential flow about a body of revolution be calculated efficiently by an
+electronic computer .
+7. Can the three-dimensional problem of a transverse potential flow about a body of
+revolution be reduced to a two-dimensional problem .
+8. Are experimental pressure distributions on bodies of revolution at angle of attack available
+.
+9. Does there exist a good basic treatment of the dynamics of re-entry combining
+consideration of realistic effects with relative simplicity of results .
+10. Has anyone formally determined the influence of joule heating, produced by the induced
+current, in magneto hydrodynamic free convection flows under general conditions .
