@@ -12,8 +12,7 @@ import edu.lab.wsalab.document.DocumentService;
 import edu.lab.wsalab.document.DocumentServiceImpl;
 
 /**
- * 
- * @author joshana
+ * @author Joshana Shakya
  *
  */
 public class Application {

@@ -7,6 +7,10 @@ import java.util.List;
 import edu.lab.wsalab.FileFormat;
 import opennlp.tools.stemmer.PorterStemmer;
 
+/**
+ * @author Joshana Shakya
+ *
+ */
 public class Preprocessor {
 
 	public String preprocess(String text) {

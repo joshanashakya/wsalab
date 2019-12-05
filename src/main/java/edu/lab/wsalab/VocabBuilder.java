@@ -9,6 +9,10 @@ import java.util.Set;
 
 import edu.lab.wsalab.document.Document;
 
+/**
+ * @author Joshana Shakya
+ *
+ */
 public class VocabBuilder {
 
 	List<String> build(List<Document> docs) {

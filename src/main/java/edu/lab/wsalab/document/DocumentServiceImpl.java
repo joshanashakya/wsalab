@@ -12,6 +12,10 @@ import edu.lab.wsalab.common.FileReaderWriter;
 import edu.lab.wsalab.common.Preprocessor;
 import edu.lab.wsalab.common.Utilities;
 
+/**
+ * @author Joshana Shakya
+ *
+ */
 public class DocumentServiceImpl implements DocumentService {
 
 	@Override

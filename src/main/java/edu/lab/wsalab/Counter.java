@@ -7,6 +7,10 @@ import java.util.Map;
 
 import edu.lab.wsalab.common.Utilities;
 
+/**
+ * @author Joshana Shakya
+ *
+ */
 public class Counter {
 
 	int minHalfWordCount(Map<String, Integer> wordToFreq) {

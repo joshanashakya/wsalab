@@ -7,6 +7,10 @@ import java.util.logging.Logger;
 import edu.lab.wsalab.common.FileReaderWriter;
 import edu.lab.wsalab.common.Preprocessor;
 
+/**
+ * @author Joshana Shakya
+ *
+ */
 public class ApplicationTest {
 	
 	private static final Logger LOGGER = Logger.getLogger(ApplicationTest.class.getName());

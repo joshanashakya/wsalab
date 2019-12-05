@@ -3,6 +3,10 @@ package edu.lab.wsalab.document;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Joshana Shakya
+ *
+ */
 public interface DocumentService {
 
 	/**

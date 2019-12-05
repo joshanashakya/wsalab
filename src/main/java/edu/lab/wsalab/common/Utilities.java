@@ -9,6 +9,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+/**
+ * @author Joshana Shakya
+ *
+ */
 public class Utilities {
 
 	public static List<Double> multiply(List<Integer> list1, List<Double> list2) {

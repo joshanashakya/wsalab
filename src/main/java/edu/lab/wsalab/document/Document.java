@@ -3,8 +3,7 @@ package edu.lab.wsalab.document;
 import java.util.List;
 
 /**
- * 
- * @author joshana
+ * @author Joshana Shakya
  *
  */
 public class Document {

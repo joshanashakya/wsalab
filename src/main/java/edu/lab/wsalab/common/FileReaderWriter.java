@@ -13,6 +13,10 @@ import java.util.Map;
 
 import edu.lab.wsalab.FileFormat;
 
+/**
+ * @author Joshana Shakya
+ *
+ */
 public class FileReaderWriter {
 
 	public static <T> void writeToFile(List<T> list, String path) {

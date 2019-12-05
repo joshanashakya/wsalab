@@ -1,5 +1,9 @@
 package edu.lab.wsalab;
 
+/**
+ * @author Joshana Shakya
+ *
+ */
 public class FileFormat {
 
 	public static final String DOCS_PATH = "cranfield";
