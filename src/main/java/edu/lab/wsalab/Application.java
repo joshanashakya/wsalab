@@ -3,6 +3,7 @@ package edu.lab.wsalab;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 import edu.lab.wsalab.common.FileReaderWriter;
@@ -21,7 +22,23 @@ public class Application {
 
 	public static void main(String[] args) {
 		Application app = new Application();
-		app.measurePerformance();
+		System.out.println("Options:\n1. Index\n2. Query\n3. Measure Performance\nEnter[1 or 2 or 3]:");
+		Scanner sc = new Scanner(System.in);
+		int option = sc.nextInt();
+		switch (option) {
+		case 1:
+			app.index();
+			break;
+		case 2:
+			app.query();
+			break;
+		case 3:
+			app.measurePerformance();
+			break;
+		default:
+			System.exit(0);
+		}
+		sc.close();
 	}
 
 	public void measurePerformance() {
