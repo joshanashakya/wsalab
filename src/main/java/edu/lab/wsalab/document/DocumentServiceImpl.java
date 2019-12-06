@@ -113,6 +113,13 @@ public class DocumentServiceImpl implements DocumentService {
 		return ids;
 	}
 
+	/**
+	 * Calculates cosine similarity of weights in the form of two vectors.
+	 * 
+	 * @param queryWeights
+	 * @param docWeights
+	 * @return cosine similarity value
+	 */
 	private double similarity(List<Double> queryWeights, List<Double> docWeights) {
 		int size = queryWeights.size();
 		// compute numerator
@@ -132,6 +139,13 @@ public class DocumentServiceImpl implements DocumentService {
 		return dotProd / (normQuery * normDoc);
 	}
 
+	/**
+	 * Calculates inverse document frequency.
+	 * 
+	 * @param docs
+	 * @param vocab
+	 * @return list of inverse document frequency of each word in vocabulary
+	 */
 	private List<Double> calIdfs(List<Document> docs, List<String> vocab) {
 		int n = docs.size();
 		List<Double> idfs = new ArrayList<>();
@@ -143,17 +157,13 @@ public class DocumentServiceImpl implements DocumentService {
 		return idfs;
 	}
 
-	private int getCount(List<Document> docs, String word) {
-		int count = 0;
-		for (Document doc : docs) {
-			String text = doc.getProcessedText();
-			if (text.contains(word)) {
-				count += 1;
-			}
-		}
-		return count;
-	}
-
+	/**
+	 * Calculates term frequency.
+	 * 
+	 * @param doc
+	 * @param vocab
+	 * @return list of frequency of each vocabulary term in document
+	 */
 	private List<Integer> calTfs(Document doc, List<String> vocab) {
 		List<Integer> tfs = new ArrayList<>();
 		for (String word : vocab) {
@@ -165,6 +175,30 @@ public class DocumentServiceImpl implements DocumentService {
 		return tfs;
 	}
 
+	/**
+	 * Calculates number of documents in which the particular word appears.
+	 * 
+	 * @param docs
+	 * @param word
+	 * @return count of word in documents
+	 */
+	private int getCount(List<Document> docs, String word) {
+		int count = 0;
+		for (Document doc : docs) {
+			String text = doc.getProcessedText();
+			if (text.contains(word)) {
+				count += 1;
+			}
+		}
+		return count;
+	}
+	
+	/**
+	 * Extracts the content of string between <> and <> or </>.
+	 * 
+	 * @param any string e.g. <DOCID>1</DOCID>
+	 * @return clean string
+	 */
 	private String getContent(String str) {
 		Pattern p = Pattern.compile("(<.*>(.*)</.*>)");
 		Matcher matcher = p.matcher(str);

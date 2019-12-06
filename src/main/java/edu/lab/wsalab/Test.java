@@ -13,7 +13,6 @@ public class Test {
 		String query = ". Is it possible to find an analytical, similar solution of the strong blast wave problem in the\n"
 				+ "Newtonian approximation .";
 		System.out.println(Character.isDigit(query.charAt(0)));
-		;
 	}
 
 	public static void test(String[] args) {

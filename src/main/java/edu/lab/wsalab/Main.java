@@ -11,15 +11,15 @@ import edu.lab.wsalab.common.Preprocessor;
  * @author Joshana Shakya
  *
  */
-public class ApplicationTest {
+public class Main {
 	
-	private static final Logger LOGGER = Logger.getLogger(ApplicationTest.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
 	public static void main(String[] args) {
-		ApplicationTest app = new ApplicationTest();
+		Main main = new Main();
 		Preprocessor preprocessor = new Preprocessor();
 
-		String text = FileReaderWriter.readFile("cran-test");
+		String text = FileReaderWriter.readFile(FileFormat.FILE_PATH);
 		System.out.format("The original content is: \n%s\n\n", text);
 		// Eliminate SGML tags
 		text = preprocessor.removeSGML(text);
@@ -30,12 +30,12 @@ public class ApplicationTest {
 		System.out.format("The tokens obtained are: \n%s\n\n", Arrays.toString(tokens));
 
 		LOGGER.info("Before using Porter Stemmer and removing stop words\n");
-		app.print(tokens);
+		main.print(tokens);
 
 		LOGGER.info("After using Porter Stemmer and removing stop words\n");
 		String[] stemmed = preprocessor.applyStemmer(tokens);
 		String[] cleaned = preprocessor.removeStopWords(stemmed);
-		app.print(cleaned);
+		main.print(cleaned);
 
 	}
 	

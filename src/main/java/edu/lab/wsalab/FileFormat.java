@@ -6,6 +6,7 @@ package edu.lab.wsalab;
  */
 public class FileFormat {
 
+	public static final String FILE_PATH = "cran.all";
 	public static final String DOCS_PATH = "cranfield";
 	public static final String DOCS_IDF = "files/IDF";
 	public static final String DOC_WEIGHTS_WRITE = "files/weights/%d";

@@ -22,18 +22,20 @@ public class Application {
 
 	public static void main(String[] args) {
 		Application app = new Application();
-		System.out.println("Options:\n1. Index\n2. Query\n3. Measure Performance\nEnter[1 or 2 or 3]:");
 		Scanner sc = new Scanner(System.in);
+		System.out.println("Options:\n1. Index\n2. Query\n3. Measure Performance\nEnter[1 or 2 or 3]:");
 		int option = sc.nextInt();
 		switch (option) {
 		case 1:
 			app.index();
 			break;
 		case 2:
-			app.query();
+			System.out.println("Enter the number of relevant documents you wish to retrieve: ");
+			app.query(sc.nextInt());
 			break;
 		case 3:
-			app.measurePerformance();
+			System.out.println("Enter the number of documents to be retrieved (10, 50, 100, or 500): ");
+			app.measurePerformance(sc.nextInt());
 			break;
 		default:
 			System.exit(0);
@@ -41,28 +43,39 @@ public class Application {
 		sc.close();
 	}
 
-	public void measurePerformance() {
-		List<String> predicted = FileReaderWriter.readFileAndList(String.format(FileFormat.PREDICTION, 10));
+	/**
+	 * Calculates precision and recall using result.txt file.
+	 * 
+	 * @param retrievedSize
+	 */
+	public void measurePerformance(int retrievedSize) {
+		List<String> predicted = FileReaderWriter.readFileAndList(String.format(FileFormat.PREDICTION, retrievedSize));
 		List<String> actual = FileReaderWriter.readFileAndList(FileFormat.RESULT);
 		int size = actual.size();
 		Preprocessor preProcessor = new Preprocessor();
+		System.out.println("Query Id | Precision | Recall");
+		System.out.println("-----------------------------");
 		for (int i = 0; i < size; i++) {
 			List<Integer> p = preProcessor.clean(predicted.get(i));
 			List<Integer> a = preProcessor.clean(actual.get(i));
-			int retrievedSize = p.size();
+//			int retrievedSize = p.size();
 			int relevantSize = a.size();
 			p.retainAll(a);
 			double precision = p.size() / (double) retrievedSize;
 			double recall = p.size() / (double) relevantSize;
-			System.out.format("Query Id: %d\n Precison: %.2f, Recall: %.2f\n", (i + 1), precision, recall);
+			System.out.format("%8d | %9.2f | %6.2f\n", (i + 1), precision, recall);
 		}
 	}
 
-	public void query() {
+	/**
+	 * Prints in console and writes in file the document ids relevant to the query.
+	 * 
+	 * @param size
+	 */
+	public void query(int size) {
 		LOGGER.info("Started querying.");
 		List<String> queries = FileReaderWriter.readFileAndList(FileFormat.QUERIES_PATH, true);
 		Map<Integer, List<Integer>> idToDocId = new LinkedHashMap<>();
-		int size = 500;
 		for (String query : queries) {
 			String[] arr = query.split("\\.");
 			int id = Integer.valueOf(arr[0].trim());
@@ -70,10 +83,20 @@ public class Application {
 			List<Integer> docIds = query(id, value).subList(0, size);
 			idToDocId.put(id, docIds);
 		}
+		print(idToDocId, size);
 		FileReaderWriter.writeToFile(idToDocId, String.format(FileFormat.RESULT, size));
 		LOGGER.info("Completed querying.");
 	}
 
+	/**
+	 * Creates document from given queryNo and query. Reads vocabulary file and IDF
+	 * file. Calculates weight of words in vocabulary for that query document. Lists
+	 * all documents in descending order of their relevance with query.
+	 * 
+	 * @param queryNo
+	 * @param query
+	 * @return
+	 */
 	public List<Integer> query(int queryNo, String query) {
 		DocumentService docService = new DocumentServiceImpl();
 		// create document
@@ -91,6 +114,13 @@ public class Application {
 		return docService.rank(doc, idToWeights);
 	}
 
+	/**
+	 * Reads files from given folder. Extracts content and creates Document type
+	 * object of each file. Pre-processes the properties of Document type object and
+	 * store in single property. Constructs vocabulary collecting distinct words
+	 * from all documents. Constructs IDF (Inverse Document Frequency) file for
+	 * vocabulary. Calculates weight of each document and stores in file.
+	 */
 	public void index() {
 		LOGGER.info("Started indexing documents.");
 		DocumentService docService = new DocumentServiceImpl();
@@ -102,7 +132,22 @@ public class Application {
 		FileReaderWriter.writeToFile(vocab, FileFormat.VOCABULARY);
 
 		// calculate weight of each document
-		List<Document> docsWithWeight = docService.calWeight(docs, vocab);
+		docService.calWeight(docs, vocab);
 		LOGGER.info("Completed indexing documents.");
+	}
+
+	private void print(Map<Integer, List<Integer>> idToDocId, int size) {
+		System.out.format("Relevant documents size: %d\n", size);
+		for (Map.Entry<Integer, List<Integer>> entry : idToDocId.entrySet()) {
+			StringBuilder sb = new StringBuilder();
+			sb.append(entry.getKey());
+			sb.append(": ");
+			List<Integer> docIds = entry.getValue();
+			for (Integer docId : docIds) {
+				sb.append(docId);
+				sb.append(" ");
+			}
+			System.out.println(sb.toString());
+		}
 	}
 }

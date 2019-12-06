@@ -16,6 +16,9 @@ import edu.lab.wsalab.FileFormat;
 /**
  * @author Joshana Shakya
  *
+ *         Responsible for read from and writing to files. Methods with string
+ *         Data e.g. readDataFile, reads/writes values in integer or double
+ *         form.
  */
 public class FileReaderWriter {
 
@@ -32,6 +35,12 @@ public class FileReaderWriter {
 		}
 	}
 
+	/**
+	 * Writes to file in the format e.g. 1: 20, 30, 12, 15, 24.
+	 * 
+	 * @param map
+	 * @param path
+	 */
 	public static void writeToFile(Map<Integer, List<Integer>> map, String path) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
