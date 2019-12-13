@@ -39,7 +39,7 @@ Vocabulary size: 5402
   
 Top 10 words:  
 flow: 2458  
-ar: 2456 
+ar: 2456   
 w: 1643  
 b: 1540  
 pressur: 1522  

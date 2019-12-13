@@ -31,7 +31,7 @@ public class Preprocessor {
 	}
 
 	public String[] tokenize(String str) {
-		str = str.replaceAll("[^A-Za-z ]", " ").replaceAll(" +", " ").toLowerCase();
+		str = str.replaceAll("[^A-Za-z ]", " ").replaceAll("\\s+", " ").toLowerCase();
 		return str.trim().split("\\s");
 	}
 

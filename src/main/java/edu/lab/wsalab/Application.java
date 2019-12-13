@@ -58,7 +58,6 @@ public class Application {
 		for (int i = 0; i < size; i++) {
 			List<Integer> p = preProcessor.clean(predicted.get(i));
 			List<Integer> a = preProcessor.clean(actual.get(i));
-//			int retrievedSize = p.size();
 			int relevantSize = a.size();
 			p.retainAll(a);
 			double precision = p.size() / (double) retrievedSize;
