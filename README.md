@@ -65,8 +65,9 @@ __To run the project__
 2. Run `edu.lab.wsalab.Application` file and select option to perform tasks: Index, Query, Measure Performance
 
 __Note__  
-cranfield data is downloaded from this site:
-http://web.eecs.umich.edu/~mihalcea/courses/498IR/Resources/cranfield.zip
+- cranfield data is downloaded from this site: http://web.eecs.umich.edu/~mihalcea/courses/498IR/Resources/cranfield.zip  
+- In root project location `files` folder has been created to store generated files. `files/` contains `weights/` and `results/` which respectively store weight of each document with document id as name and query id with its relevant document ids.  
+- While executing `edu.lab.wsalab.Application` file for the __first time__ perform the tasks in sequence 1, 2, and 3.  
   
         
             
